@@ -10,7 +10,7 @@ func GetAll() (todos []Todo, err error) {
 	}
 	defer conn.Close()
 
-	rows, err := conn.QueryRow(`SELECT * FROM todos`)
+	rows, err := conn.Query(`SELECT * FROM todos`)
 	if err != nil {
 		return
 	}
@@ -18,7 +18,7 @@ func GetAll() (todos []Todo, err error) {
 	for rows.Next() {
 		var todo Todo
 
-		err = row.Scan(&todo.ID, &todo.Title, &todo.Description, &todo.Done)
+		err = rows.Scan(&todo.ID, &todo.Title, &todo.Description, &todo.Done)
 		if err != nil {
 			continue //ideal seria um log
 		}

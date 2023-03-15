@@ -6,11 +6,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/stretchr/testify/http"
 	"github.com/zemartins81/apiGoPostgres/models"
 )
 
-func Create(w http.TestResponseWriter, r *http.Request) {
+func Create(w http.ResponseWriter, r *http.Request) {
 	var todo models.Todo
 
 	err := json.NewDecoder(r.Body).Decode(&todo)
