@@ -1,6 +1,8 @@
 package models
 
-import "github.com/zemartins81/apiGoPostgres/db"
+import (
+	"github.com/zemartins81/apiGoPostgres/db"
+)
 
 func Update(id int64, todo Todo) (int64, error) {
 	conn, err := db.OpenConnection()
@@ -11,6 +13,7 @@ func Update(id int64, todo Todo) (int64, error) {
 
 	res, err := conn.Exec(`UPDATE todos SET title=$1, description=$2, done=$3 WHERE id=$4`,
 		todo.Title, todo.Description, todo.Done, todo.ID)
+
 	if err != nil {
 		return 0, err
 	}
